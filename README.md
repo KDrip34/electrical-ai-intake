@@ -4,6 +4,8 @@ Homeowners upload photos of an electrical problem. Claude analyzes the photos, f
 
 > **Portfolio version.** This is an anonymized copy of a production system I built for a real Northern California electrical contractor. The client's name, logo, license number, and live URLs have been replaced with a fictional brand ("Voltline Electric"). All application code is the same.
 
+**Live demo:** _link coming after Vercel deploy_ (demo mode: the form works end to end, but nothing is sent to the API, CRM, or AI model)
+
 ## What I built
 
 - **Customer website** (Next.js, Tailwind v4, shadcn/ui on Base UI, Magic UI): service pages, a multi-step intake form, drag-and-drop photo upload, and a confirmation screen with a next-steps tracker.
@@ -48,7 +50,7 @@ cd website && npm install && npm run dev -- -p 3001
 ```
 
 `intake-api/.env` (names only): `ANTHROPIC_API_KEY`, `HUBSPOT_TOKEN`; optional `ANTHROPIC_MODEL`, `ALLOWED_ORIGINS`, `INTAKE_RATE_LIMIT`, `MAX_AI_CALLS_PER_DAY`, `TRUSTED_PROXY_HOPS`, `HUBSPOT_DEAL_PIPELINE`, `HUBSPOT_DEAL_STAGE`.
-Website env: `NEXT_PUBLIC_API_URL` (default `http://localhost:3000`).
+Website env: `NEXT_PUBLIC_API_URL` (default `http://localhost:3000`), `NEXT_PUBLIC_DEMO_MODE=true` to run the UI without the backend.
 
 ## Deployment
 

@@ -8,6 +8,8 @@ import Confirmation from "@/components/Confirmation";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import PhotoDropzone from "@/components/PhotoDropzone";
 
+const DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+
 type FormState = {
   name: string;
   phone: string;
@@ -106,6 +108,12 @@ export default function IntakeForm({ initialService }: { initialService?: Servic
         ...(descriptionText ? { description: descriptionText } : {}),
       };
       const payloads = await Promise.all(photos.map(fileToPhoto));
+      if (DEMO_MODE) {
+        // Portfolio demo: no API call, no CRM write, no AI spend.
+        await new Promise((r) => setTimeout(r, 1200));
+        setIntakeId(`demo-${Date.now().toString(36)}`);
+        return;
+      }
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000"}/api/estimate/intake`,
         {
@@ -133,6 +141,11 @@ export default function IntakeForm({ initialService }: { initialService?: Servic
 
   return (
     <form onSubmit={handleSubmit} noValidate className="mx-auto max-w-xl space-y-4">
+      {DEMO_MODE && (
+        <p role="note" className="rounded-md border border-brand/30 bg-brand/5 px-4 py-3 text-sm text-ink">
+          Portfolio demo: submissions are not sent anywhere. Try the form and photo upload freely.
+        </p>
+      )}
       <div>
         <label htmlFor="name" className="mb-1 block text-sm font-medium">Full name</label>
         <input id="name" {...fieldProps("name")} value={form.name} onChange={(e) => update("name", e.target.value)} autoComplete="name" />
