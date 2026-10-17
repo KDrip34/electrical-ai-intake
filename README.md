@@ -4,7 +4,7 @@ Homeowners upload photos of an electrical problem. Claude analyzes the photos, f
 
 > **Portfolio version.** This is an anonymized copy of a production system I built for a real Northern California electrical contractor. The client's name, logo, license number, and live URLs have been replaced with a fictional brand ("Voltline Electric"). All application code is the same.
 
-**Live demo:** _link coming after Vercel deploy_ (demo mode: the form works end to end, but nothing is sent to the API, CRM, or AI model)
+**Live demo:** https://electrical-ai-intake.vercel.app (demo mode: the form works end to end, but nothing is sent to the API, CRM, or AI model)
 
 ## What I built
 
